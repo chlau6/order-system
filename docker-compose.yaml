@@ -1,0 +1,30 @@
+version: "1.0"
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    restart: unless-stopped
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=root
+      interval: 10s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: demo
+    ports:
+      - 3307:3306
+    volumes:
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
+      - ./db-data:/var/lib/mysql
+  app:
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    build: ./
+    restart: on-failure
+    ports:
+      - 8080:8080
