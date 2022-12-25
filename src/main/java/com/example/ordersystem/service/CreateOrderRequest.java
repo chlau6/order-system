@@ -1,4 +1,4 @@
-package com.example.ordersystem.payload;
+package com.example.ordersystem.service;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

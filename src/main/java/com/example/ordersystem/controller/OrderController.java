@@ -1,10 +1,10 @@
 package com.example.ordersystem.controller;
 
-import com.example.ordersystem.payload.CreateOrderRequest;
-import com.example.ordersystem.payload.CreateOrderResponse;
-import com.example.ordersystem.payload.GetOrderResponse;
-import com.example.ordersystem.payload.UpdateOrderStatusRequest;
-import com.example.ordersystem.payload.UpdateOrderStatusResponse;
+import com.example.ordersystem.service.CreateOrderRequest;
+import com.example.ordersystem.service.CreateOrderResponse;
+import com.example.ordersystem.service.GetOrderResponse;
+import com.example.ordersystem.service.UpdateOrderStatusRequest;
+import com.example.ordersystem.service.UpdateOrderStatusResponse;
 import com.example.ordersystem.service.OrderService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;

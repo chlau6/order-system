@@ -1,14 +1,14 @@
-package com.example.ordersystem.impl;
+package com.example.ordersystem.service.impl;
 
 import com.example.ordersystem.domain.Order;
 import com.example.ordersystem.exception.OrderAPIException;
-import com.example.ordersystem.googleapi.GoogleMapAPIService;
-import com.example.ordersystem.payload.CreateOrderRequest;
-import com.example.ordersystem.payload.CreateOrderResponse;
-import com.example.ordersystem.payload.GetOrderResponse;
-import com.example.ordersystem.payload.OrderStatus;
-import com.example.ordersystem.payload.UpdateOrderStatusRequest;
-import com.example.ordersystem.payload.UpdateOrderStatusResponse;
+import com.example.ordersystem.google.GoogleMapAPIService;
+import com.example.ordersystem.service.CreateOrderRequest;
+import com.example.ordersystem.service.CreateOrderResponse;
+import com.example.ordersystem.service.GetOrderResponse;
+import com.example.ordersystem.service.OrderStatus;
+import com.example.ordersystem.service.UpdateOrderStatusRequest;
+import com.example.ordersystem.service.UpdateOrderStatusResponse;
 import com.example.ordersystem.repository.OrderRepository;
 import com.example.ordersystem.service.OrderService;
 import com.example.ordersystem.util.MessageFormatter;

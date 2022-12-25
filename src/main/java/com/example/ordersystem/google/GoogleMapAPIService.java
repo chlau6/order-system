@@ -1,6 +1,5 @@
-package com.example.ordersystem.googleapi;
+package com.example.ordersystem.google;
 
-import com.example.ordersystem.payload.GetDistanceResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;

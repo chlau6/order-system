@@ -1,4 +1,4 @@
-package com.example.ordersystem.payload;
+package com.example.ordersystem.service;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateOrderResponse {
+public class GetOrderResponse {
     @NotNull
     private String id;
 
@@ -16,9 +16,9 @@ public class CreateOrderResponse {
     @NotNull
     private OrderStatus status;
 
-    public CreateOrderResponse(String id, Integer distance, OrderStatus orderStatus) {
+    public GetOrderResponse(String id, Integer distance, OrderStatus status) {
         this.id = id;
         this.distance = distance;
-        this.status = orderStatus;
+        this.status = status;
     }
 }

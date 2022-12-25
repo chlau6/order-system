@@ -1,4 +1,4 @@
-package com.example.ordersystem.payload;
+package com.example.ordersystem.service;
 
 public enum OrderStatus {
     UNASSIGNED,
