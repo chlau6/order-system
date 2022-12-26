@@ -51,10 +51,12 @@ class OrderServiceImplTest {
                 List.of("22.336273035980003", "114.17647984732214")
         );
 
+        Order order = order(DISTANCE, Order.Status.UNASSIGNED);
         Mockito.when(googleMapAPIService.getDistance(any(), any(), any(), any())).thenReturn(Optional.of(DISTANCE));
-        Mockito.when(orderRepository.save(any())).thenReturn(order(DISTANCE, Order.Status.UNASSIGNED));
+        Mockito.when(orderRepository.save(any())).thenReturn(order);
 
         CreateOrderResponse response = orderService.create(request);
+        assertEquals(order.getId(), response.getId());
         assertEquals(DISTANCE, response.getDistance());
         assertEquals(OrderStatus.UNASSIGNED, response.getStatus());
     }
