@@ -33,7 +33,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 @ExtendWith({MockitoExtension.class, SpringExtension.class})
 class OrderServiceImplTest {
     private static final int DISTANCE = 100;
-    private static final String TAKEN_STATUS = "TAKEN";
 
     @InjectMocks
     private final OrderServiceImpl orderService = new OrderServiceImpl();
@@ -51,8 +50,9 @@ class OrderServiceImplTest {
                 List.of("22.336273035980003", "114.17647984732214")
         );
 
-        Order order = order(DISTANCE, Order.Status.UNASSIGNED);
         Mockito.when(googleMapAPIService.getDistance(any(), any(), any(), any())).thenReturn(Optional.of(DISTANCE));
+
+        Order order = order(DISTANCE, Order.Status.UNASSIGNED);
         Mockito.when(orderRepository.save(any())).thenReturn(order);
 
         CreateOrderResponse response = orderService.create(request);
@@ -63,7 +63,7 @@ class OrderServiceImplTest {
 
     @Test
     void updateOrderStatusSuccess() {
-        var request = new UpdateOrderStatusRequest(TAKEN_STATUS);
+        var request = new UpdateOrderStatusRequest(OrderStatus.TAKEN);
 
         Mockito.when(orderRepository.findById(any())).thenReturn(optionalOrder(DISTANCE, Order.Status.UNASSIGNED));
         Mockito.when(orderRepository.setOrderStatusById(any(), any(), any())).thenReturn(1);
@@ -74,7 +74,7 @@ class OrderServiceImplTest {
 
     @Test
     void updateTakenOrderConcurrently() {
-        var request = new UpdateOrderStatusRequest(TAKEN_STATUS);
+        var request = new UpdateOrderStatusRequest(OrderStatus.TAKEN);
 
         Mockito.when(orderRepository.findById(any())).thenReturn(optionalOrder(DISTANCE, Order.Status.UNASSIGNED));
         Mockito.when(orderRepository.setOrderStatusById(any(), any(), any())).thenReturn(0);
@@ -84,7 +84,7 @@ class OrderServiceImplTest {
 
     @Test
     void updateUnknownOrder() {
-        var request = new UpdateOrderStatusRequest(TAKEN_STATUS);
+        var request = new UpdateOrderStatusRequest(OrderStatus.TAKEN);
 
         Mockito.when(orderRepository.findById(any())).thenReturn(Optional.empty());
 
@@ -93,7 +93,7 @@ class OrderServiceImplTest {
 
     @Test
     void updateTakenOrder() {
-        var request = new UpdateOrderStatusRequest(TAKEN_STATUS);
+        var request = new UpdateOrderStatusRequest(OrderStatus.TAKEN);
 
         Mockito.when(orderRepository.findById(any())).thenReturn(optionalOrder(DISTANCE, Order.Status.TAKEN));
 

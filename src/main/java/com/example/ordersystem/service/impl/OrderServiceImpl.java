@@ -55,7 +55,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public UpdateOrderStatusResponse updateOrderStatus(String id, UpdateOrderStatusRequest request) {
-        Order.Status status = Order.Status.valueOf(request.getStatus());
+        System.out.println(request.getStatus());
+        Order.Status status = Order.Status.valueOf(request.getStatus().name());
 
         Order order = orderRepository.findById(id).orElseThrow(
                 () -> new OrderAPIException(HttpStatus.NOT_FOUND, MessageFormatter.format("Order not found, id=%s", id)));
